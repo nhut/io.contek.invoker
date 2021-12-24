@@ -25,11 +25,6 @@ public final class GetPositionList extends UserRestRequest<Response> {
     super(actor, context);
   }
 
-  public GetPositionList setSymbol(String symbol) {
-    this.symbol = symbol;
-    return this;
-  }
-
   @Override
   protected RestMethod getMethod() {
     return GET;
