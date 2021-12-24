@@ -49,12 +49,5 @@ public final class GetPositionList extends UserRestRequest<Response> {
   }
 
   @NotThreadSafe
-  public static final class Response extends RestResponse<List<Result>> {}
-
-  @NotThreadSafe
-  public static final class Result {
-
-    public boolean is_valid;
-    public _Position data;
-  }
+  public static final class Response extends RestResponse<List<_Position>> {}
 }
