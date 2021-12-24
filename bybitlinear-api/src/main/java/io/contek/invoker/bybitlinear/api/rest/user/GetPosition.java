@@ -1,7 +1,7 @@
 package io.contek.invoker.bybitlinear.api.rest.user;
 
 import com.google.common.collect.ImmutableList;
-import io.contek.invoker.bybitlinear.api.common._Order;
+import io.contek.invoker.bybitlinear.api.common._Position;
 import io.contek.invoker.bybitlinear.api.rest.common.RestResponse;
 import io.contek.invoker.commons.actor.IActor;
 import io.contek.invoker.commons.actor.ratelimit.TypedPermitRequest;
@@ -11,33 +11,21 @@ import io.contek.invoker.commons.rest.RestParams;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
-import static io.contek.invoker.bybitlinear.api.ApiFactory.RateLimits.ONE_REST_PRIVATE_ORDER_READ_REQUEST;
-import static io.contek.invoker.bybitlinear.api.rest.user.GetOrder.Response;
+import static io.contek.invoker.bybitlinear.api.ApiFactory.RateLimits.ONE_REST_PRIVATE_POSITION_READ_REQUEST;
+import static io.contek.invoker.bybitlinear.api.rest.user.GetPosition.Response;
 import static io.contek.invoker.commons.rest.RestMethod.GET;
 import static java.util.Objects.requireNonNull;
 
 @NotThreadSafe
-public final class GetOrder extends UserRestRequest<Response> {
+public final class GetPosition extends UserRestRequest<Response> {
 
-  private String order_id;
-  private String order_link_id;
   private String symbol;
 
-  GetOrder(IActor actor, RestContext context) {
+  GetPosition(IActor actor, RestContext context) {
     super(actor, context);
   }
 
-  public GetOrder setOrderId(String order_id) {
-    this.order_id = order_id;
-    return this;
-  }
-
-  public GetOrder setOrderLinkId(String order_link_id) {
-    this.order_link_id = order_link_id;
-    return this;
-  }
-
-  public GetOrder setSymbol(String symbol) {
+  public GetPosition setSymbol(String symbol) {
     this.symbol = symbol;
     return this;
   }
@@ -49,22 +37,12 @@ public final class GetOrder extends UserRestRequest<Response> {
 
   @Override
   protected String getEndpointPath() {
-    return "/v2/private/order";
+    return "/v2/private/position/list";
   }
 
   @Override
   protected RestParams getParams() {
     RestParams.Builder builder = RestParams.newBuilder();
-
-    if (order_id == null && order_link_id == null) {
-      throw new IllegalArgumentException();
-    }
-    if (order_id != null) {
-      builder.add("order_id", order_id);
-    }
-    if (order_link_id != null) {
-      builder.add("order_link_id", order_link_id);
-    }
 
     requireNonNull(symbol);
     builder.add("symbol", symbol);
@@ -74,7 +52,7 @@ public final class GetOrder extends UserRestRequest<Response> {
 
   @Override
   protected ImmutableList<TypedPermitRequest> getRequiredQuotas() {
-    return ONE_REST_PRIVATE_ORDER_READ_REQUEST;
+    return ONE_REST_PRIVATE_POSITION_READ_REQUEST;
   }
 
   @Override
@@ -83,5 +61,5 @@ public final class GetOrder extends UserRestRequest<Response> {
   }
 
   @NotThreadSafe
-  public static final class Response extends RestResponse<_Order> {}
+  public static final class Response extends RestResponse<_Position> {}
 }

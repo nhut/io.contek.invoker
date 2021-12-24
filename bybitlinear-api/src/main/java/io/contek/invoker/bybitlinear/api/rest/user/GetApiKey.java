@@ -29,7 +29,7 @@ public final class GetApiKey extends UserRestRequest<Response> {
 
   @Override
   protected String getEndpointPath() {
-    return "/v2/private/account/api-key";
+    return "/open-api/api-key";
   }
 
   @Override

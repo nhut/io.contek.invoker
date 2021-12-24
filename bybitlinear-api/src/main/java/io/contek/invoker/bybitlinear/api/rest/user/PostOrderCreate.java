@@ -97,7 +97,7 @@ public final class PostOrderCreate extends UserRestRequest<Response> {
 
   @Override
   protected String getEndpointPath() {
-    return "/private/linear/order/create";
+    return "/v2/private/order/create";
   }
 
   @Override

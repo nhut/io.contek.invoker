@@ -1,8 +1,8 @@
-package io.contek.invoker.bybit.api.rest.user;
+package io.contek.invoker.bybitlinear.api.rest.user;
 
 import com.google.common.collect.ImmutableList;
-import io.contek.invoker.bybit.api.common._ApiKey;
-import io.contek.invoker.bybit.api.rest.common.RestResponse;
+import io.contek.invoker.bybitlinear.api.common._Leverage;
+import io.contek.invoker.bybitlinear.api.rest.common.RestResponse;
 import io.contek.invoker.commons.actor.IActor;
 import io.contek.invoker.commons.actor.ratelimit.TypedPermitRequest;
 import io.contek.invoker.commons.rest.RestContext;
@@ -10,15 +10,16 @@ import io.contek.invoker.commons.rest.RestMethod;
 import io.contek.invoker.commons.rest.RestParams;
 
 import javax.annotation.concurrent.NotThreadSafe;
+import java.util.Map;
 
-import static io.contek.invoker.bybit.api.ApiFactory.RateLimits.ONE_REST_PRIVATE_KEY_INFO_READ_REQUEST;
-import static io.contek.invoker.bybit.api.rest.user.GetApiKey.Response;
+import static io.contek.invoker.bybitlinear.api.ApiFactory.RateLimits.ONE_REST_PRIVATE_POSITION_READ_REQUEST;
+import static io.contek.invoker.bybitlinear.api.rest.user.GetUserLeverage.Response;
 import static io.contek.invoker.commons.rest.RestMethod.GET;
 
 @NotThreadSafe
-public final class GetApiKey extends UserRestRequest<Response> {
+public final class GetUserLeverage extends UserRestRequest<Response> {
 
-  GetApiKey(IActor actor, RestContext context) {
+  GetUserLeverage(IActor actor, RestContext context) {
     super(actor, context);
   }
 
@@ -29,7 +30,7 @@ public final class GetApiKey extends UserRestRequest<Response> {
 
   @Override
   protected String getEndpointPath() {
-    return "/open-api/api-key";
+    return "/user/leverage";
   }
 
   @Override
@@ -41,7 +42,7 @@ public final class GetApiKey extends UserRestRequest<Response> {
 
   @Override
   protected ImmutableList<TypedPermitRequest> getRequiredQuotas() {
-    return ONE_REST_PRIVATE_KEY_INFO_READ_REQUEST;
+    return ONE_REST_PRIVATE_POSITION_READ_REQUEST;
   }
 
   @Override
@@ -50,5 +51,5 @@ public final class GetApiKey extends UserRestRequest<Response> {
   }
 
   @NotThreadSafe
-  public static final class Response extends RestResponse<_ApiKey> {}
+  public static final class Response extends RestResponse<Map<String, _Leverage>> {}
 }
