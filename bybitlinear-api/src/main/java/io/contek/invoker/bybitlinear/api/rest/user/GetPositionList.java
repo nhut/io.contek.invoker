@@ -30,7 +30,7 @@ public final class GetPositionList extends UserRestRequest<Response> {
 
   @Override
   protected String getEndpointPath() {
-    return "/private/linear/position/list";
+    return "/v2/private/position/list";
   }
 
   @Override

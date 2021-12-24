@@ -11,26 +11,26 @@ import io.contek.invoker.commons.rest.RestParams;
 import javax.annotation.concurrent.NotThreadSafe;
 
 import static io.contek.invoker.bybit.api.ApiFactory.RateLimits.ONE_REST_PRIVATE_POSITION_WRITE_REQUEST;
-import static io.contek.invoker.bybit.api.rest.user.PostLeverageSave.Response;
+import static io.contek.invoker.bybit.api.rest.user.PostUserLeverageSave.Response;
 import static io.contek.invoker.commons.rest.RestMethod.POST;
 import static java.util.Objects.requireNonNull;
 
 @NotThreadSafe
-public final class PostLeverageSave extends UserRestRequest<Response> {
+public final class PostUserLeverageSave extends UserRestRequest<Response> {
 
   private String symbol;
   private Double leverage;
 
-  PostLeverageSave(IActor actor, RestContext context) {
+  PostUserLeverageSave(IActor actor, RestContext context) {
     super(actor, context);
   }
 
-  public PostLeverageSave setSymbol(String symbol) {
+  public PostUserLeverageSave setSymbol(String symbol) {
     this.symbol = symbol;
     return this;
   }
 
-  public PostLeverageSave setLeverage(Double leverage) {
+  public PostUserLeverageSave setLeverage(Double leverage) {
     this.leverage = leverage;
     return this;
   }

@@ -23,11 +23,9 @@ public final class GetOrderList extends UserRestRequest<Response> {
 
   private String symbol;
   private String order_status;
-  private String order_id;
-  private String order_link_id;
-  private String order;
-  private Integer page;
+  private String direction;
   private Integer limit;
+  private String cursor;
 
   GetOrderList(IActor actor, RestContext context) {
     super(actor, context);
@@ -43,28 +41,18 @@ public final class GetOrderList extends UserRestRequest<Response> {
     return this;
   }
 
-  public GetOrderList setOrderId(@Nullable String order_id) {
-    this.order_id = order_id;
-    return this;
-  }
-
-  public GetOrderList setOrderLinkId(@Nullable String order_link_id) {
-    this.order_link_id = order_link_id;
-    return this;
-  }
-
-  public GetOrderList setOrder(@Nullable String order) {
-    this.order = order;
-    return this;
-  }
-
-  public GetOrderList setPage(@Nullable Integer page) {
-    this.page = page;
+  public GetOrderList setDirection(@Nullable String direction) {
+    this.direction = direction;
     return this;
   }
 
   public GetOrderList setLimit(@Nullable Integer limit) {
     this.limit = limit;
+    return this;
+  }
+
+  public GetOrderList setCursor(@Nullable String cursor) {
+    this.cursor = cursor;
     return this;
   }
 
@@ -75,7 +63,7 @@ public final class GetOrderList extends UserRestRequest<Response> {
 
   @Override
   protected String getEndpointPath() {
-    return "/private/linear/order/list";
+    return "/v2/private/order/list";
   }
 
   @Override
@@ -89,24 +77,16 @@ public final class GetOrderList extends UserRestRequest<Response> {
       builder.add("order_status", order_status);
     }
 
-    if (order_id != null) {
-      builder.add("order_id", order_id);
-    }
-
-    if (order_link_id != null) {
-      builder.add("order_link_id", order_link_id);
-    }
-
-    if (order != null) {
-      builder.add("order", order);
-    }
-
-    if (page != null) {
-      builder.add("page", page);
+    if (direction != null) {
+      builder.add("direction", direction);
     }
 
     if (limit != null) {
       builder.add("limit", limit);
+    }
+
+    if (cursor != null) {
+      builder.add("cursor", cursor);
     }
 
     return builder.build();

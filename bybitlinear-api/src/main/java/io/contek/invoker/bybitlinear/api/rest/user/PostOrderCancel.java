@@ -49,7 +49,7 @@ public final class PostOrderCancel extends UserRestRequest<Response> {
 
   @Override
   protected String getEndpointPath() {
-    return "/private/linear/order/cancel";
+    return "/v2/private/order/cancel";
   }
 
   @Override
