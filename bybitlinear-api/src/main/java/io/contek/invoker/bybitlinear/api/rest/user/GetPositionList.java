@@ -19,15 +19,8 @@ import static io.contek.invoker.commons.rest.RestMethod.GET;
 @NotThreadSafe
 public final class GetPositionList extends UserRestRequest<Response> {
 
-  private String symbol;
-
   GetPositionList(IActor actor, RestContext context) {
     super(actor, context);
-  }
-
-  public GetPositionList setSymbol(String symbol) {
-    this.symbol = symbol;
-    return this;
   }
 
   @Override
@@ -42,13 +35,7 @@ public final class GetPositionList extends UserRestRequest<Response> {
 
   @Override
   protected RestParams getParams() {
-    RestParams.Builder builder = RestParams.newBuilder();
-
-    if (symbol != null) {
-      builder.add("symbol", symbol);
-    }
-
-    return builder.build();
+    return RestParams.empty();
   }
 
   @Override
