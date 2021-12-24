@@ -87,5 +87,5 @@ public final class PostPositionSwitchIsolated extends UserRestRequest<Response> 
   }
 
   @NotThreadSafe
-  public static final class Response extends RestResponse<Void> {}
+  public static final class Response extends RestResponse<Double> {}
 }
