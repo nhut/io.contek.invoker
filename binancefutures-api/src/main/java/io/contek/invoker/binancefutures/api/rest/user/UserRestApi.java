@@ -36,10 +36,6 @@ public final class UserRestApi {
     return new GetOpenOrders(actor, context);
   }
 
-  public GetUserTrades getUserTrades() {
-    return new GetUserTrades(actor, context);
-  }
-
   public PostLeverage postLeverage() {
     return new PostLeverage(actor, context);
   }
