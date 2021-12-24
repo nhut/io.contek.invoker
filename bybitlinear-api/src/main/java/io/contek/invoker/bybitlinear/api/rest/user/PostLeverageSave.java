@@ -19,8 +19,7 @@ import static java.util.Objects.requireNonNull;
 public final class PostLeverageSave extends UserRestRequest<Response> {
 
   private String symbol;
-  private Double buy_leverage;
-  private Double sell_leverage;
+  private Double leverage;
 
   PostLeverageSave(IActor actor, RestContext context) {
     super(actor, context);
@@ -31,13 +30,8 @@ public final class PostLeverageSave extends UserRestRequest<Response> {
     return this;
   }
 
-  public PostLeverageSave setBuyLeverage(Double buy_leverage) {
-    this.buy_leverage = buy_leverage;
-    return this;
-  }
-
-  public PostLeverageSave setSellLeverage(Double sell_leverage) {
-    this.sell_leverage = sell_leverage;
+  public PostLeverageSave setLeverage(Double leverage) {
+    this.leverage = leverage;
     return this;
   }
 
@@ -58,11 +52,8 @@ public final class PostLeverageSave extends UserRestRequest<Response> {
     requireNonNull(symbol);
     builder.add("symbol", symbol);
 
-    requireNonNull(buy_leverage);
-    builder.add("buy_leverage", buy_leverage);
-
-    requireNonNull(sell_leverage);
-    builder.add("sell_leverage", sell_leverage);
+    requireNonNull(leverage);
+    builder.add("leverage", leverage);
 
     return builder.build();
   }
