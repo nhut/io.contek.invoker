@@ -10,7 +10,6 @@ import io.contek.invoker.commons.rest.RestMethod;
 import io.contek.invoker.commons.rest.RestParams;
 
 import javax.annotation.concurrent.NotThreadSafe;
-import java.util.List;
 
 import static io.contek.invoker.bybit.api.ApiFactory.RateLimits.ONE_REST_PRIVATE_POSITION_READ_REQUEST;
 import static io.contek.invoker.bybit.api.rest.user.GetPositionList.Response;
@@ -49,5 +48,5 @@ public final class GetPositionList extends UserRestRequest<Response> {
   }
 
   @NotThreadSafe
-  public static final class Response extends RestResponse<List<_Position>> {}
+  public static final class Response extends RestResponse<_Position> {}
 }
