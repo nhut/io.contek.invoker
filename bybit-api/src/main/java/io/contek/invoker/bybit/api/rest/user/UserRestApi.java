@@ -32,10 +32,6 @@ public final class UserRestApi {
     return new GetOrderList(actor, context);
   }
 
-  public GetPosition getPosition() {
-    return new GetPosition(actor, context);
-  }
-
   public GetPositionList getPositionList() {
     return new GetPositionList(actor, context);
   }
