@@ -10,7 +10,6 @@ import io.contek.invoker.commons.rest.RestParams;
 
 import javax.annotation.Nullable;
 import javax.annotation.concurrent.NotThreadSafe;
-import java.util.ArrayList;
 
 import static io.contek.invoker.binancedelivery.api.ApiFactory.RateLimits.IP_REST_REQUEST_RULE;
 import static io.contek.invoker.commons.rest.RestMethod.GET;
@@ -122,5 +121,5 @@ public final class GetUserTrades extends UserRestRequest<GetUserTrades.Response>
   }
 
   @NotThreadSafe
-  public static final class Response extends ArrayList<_UserTrade> {}
+  public static final class Response extends _UserTrade {}
 }
