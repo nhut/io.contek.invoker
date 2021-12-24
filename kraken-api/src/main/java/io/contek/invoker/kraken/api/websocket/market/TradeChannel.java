@@ -6,13 +6,14 @@ import io.contek.invoker.kraken.api.websocket.WebSocketChannelId;
 import io.contek.invoker.kraken.api.websocket.WebSocketRequestIdGenerator;
 import io.contek.invoker.kraken.api.websocket.common.Subscription;
 import io.contek.invoker.kraken.api.websocket.common.WebSocketChannelDataMessage;
+import io.contek.invoker.kraken.api.websocket.common.constants.WebSocketChannelKeys;
 
 import javax.annotation.concurrent.Immutable;
 import javax.annotation.concurrent.NotThreadSafe;
 import javax.annotation.concurrent.ThreadSafe;
 import java.util.List;
 
-import static io.contek.invoker.kraken.api.websocket.common.constants.WebSocketChannelKeys._trade;
+import static io.contek.invoker.kraken.api.websocket.common.constants.WebSocketChannelKeys._book;
 
 @ThreadSafe
 public final class TradeChannel extends WebSocketChannel<TradeChannel.Id, TradeChannel.Message> {
@@ -29,7 +30,7 @@ public final class TradeChannel extends WebSocketChannel<TradeChannel.Id, TradeC
   @Override
   protected Subscription getSubscription() {
     Subscription subscription = new Subscription();
-    subscription.name = _trade;
+    subscription.name = WebSocketChannelKeys._trade;
     return subscription;
   }
 
@@ -37,7 +38,7 @@ public final class TradeChannel extends WebSocketChannel<TradeChannel.Id, TradeC
   public static final class Id extends WebSocketChannelId<TradeChannel.Message> {
 
     private Id(String pair) {
-      super(_trade, pair);
+      super(_book, pair);
     }
 
     public static Id of(String pair) {
